@@ -15,11 +15,29 @@ import {
   CardHeader,
   CardTitle,
 } from "@/components/ui/card"
+import { Button } from '../Button'
 
 export function DownloadList() {
-  const {videos} = useStore()
+  const {videos, addVideo, addAudio, } = useStore()
 
-  useEffect(() => console.log('videos', videos), [videos])
+  async function handleStartAudioExtraction() {
+    if(!videos.length) return
+
+    videos.map(video => {
+      addAudio({
+        id: crypto.randomUUID(),
+        title: video.title,
+        fromVideo: video,
+        isExtracting: false,
+        extracted: false,
+        isTranscribing: false,
+        transcribed: false,
+        playable: false,
+        isLoading: false,
+        isFetchingUrl: false,
+      })
+    })
+  }
 
   return (
     <div className="w-full max-w-lg mt-4">
@@ -29,10 +47,10 @@ export function DownloadList() {
             Videos to Download
           </CardTitle>
           <CardDescription>Paste your Youtube video ID here</CardDescription>
-        <VideoForm />
         </CardHeader>
         <CardContent>
-          <ScrollArea className="h-screen max-h-[700px]">
+          <VideoForm />
+          <ScrollArea className="h-screen max-h-[680px] mt-4">
             <div className="flex flex-col gap-2">
               { videos.map((video) => {
                 return (
@@ -42,8 +60,8 @@ export function DownloadList() {
             </div>
           </ScrollArea>
         </CardContent>
-        <CardFooter>
-          <p>Card Footer</p>
+        <CardFooter className='justify-end'>
+        <Button onClick={handleStartAudioExtraction}>Start Audio Extraction</Button>
         </CardFooter>
       </Card>
       

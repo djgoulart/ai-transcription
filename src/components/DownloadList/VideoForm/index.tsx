@@ -19,7 +19,7 @@ const formSchema = z.object({
 
 export function VideoForm() {
   const {addVideo, addVideoInfo, videoInfoRequestCompleted} = useStore()
-  const {fetchInfo, fetchVideoFile} = useVideo()
+  const {fetchInfo} = useVideo()
   const [isLoading, setIsLoading] = useState(false)
 
   const form = useForm<z.infer<typeof formSchema>>({
@@ -34,8 +34,6 @@ export function VideoForm() {
     setIsLoading(true)
     addVideo({
       id: videoId, 
-      downloaded: false, 
-      downloading: false, 
       isRequestingInfo: true, 
       hasInfo: false
     })

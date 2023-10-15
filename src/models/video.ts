@@ -7,8 +7,6 @@ export interface Thumbnail {
 export interface Video {
   id: string
   title?: string
-  downloaded: boolean
-  downloading: boolean
   isRequestingInfo: boolean
   hasInfo: boolean
   thumbnails?: {

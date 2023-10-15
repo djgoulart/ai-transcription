@@ -56,14 +56,19 @@ export function useVideo(){
     }
   }
 
-  async function fetchVideoFile(videoId: string): Promise<void> {
+  async function extractAndUploadAudioFile(videoId: string): Promise<{
+    $metadata: {
+      httpStatusCode: number
+    }
+    Key: string
+  }> {
     const fetchResponse = await fetch('/api/upload', {
       method: 'POST',
       body: JSON.stringify({videoId: videoId})
     })
 
-    console.log('upload response', await fetchResponse.json())
+    return await fetchResponse.json()
   }
 
-  return {fetchInfo, fetchVideoFile}
+  return {fetchInfo, extractAndUploadAudioFile}
 }
