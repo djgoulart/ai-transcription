@@ -17,9 +17,28 @@ import { AudioItem } from '../AudioItem'
 import { Button } from '../Button'
 
 export function AudioList() {
-  const {audios} = useStore()
+  const {audios, addTranscription} = useStore()
 
   useEffect(() => console.log('audios', audios), [audios])
+
+  async function handleStartTranscription() {
+    console.log('test')
+    if(!audios.length) return
+
+    audios.map(audio => {
+      const id = crypto.randomUUID()
+
+      addTranscription({
+        id,
+        title: audio.title,
+        name: audio.name,
+        text: '',
+        isLoading: false,
+        isTranscribing: false,
+        transcribed: false
+      })
+    })
+  }
   return (
     <div className="w-full max-w-lg mt-4">
       <Card>
@@ -41,7 +60,7 @@ export function AudioList() {
           </ScrollArea>
         </CardContent>
         <CardFooter className='justify-end'>
-          <Button>Start Transcription</Button>
+          <Button onClick={handleStartTranscription}>Start Transcription</Button>
         </CardFooter>
       </Card>
     </div>

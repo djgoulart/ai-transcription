@@ -4,6 +4,7 @@ import { Audio } from "@/models";
 export interface AudioListSlice {
   audios: Array<Audio>
   addAudio: (audio: Audio) => void
+  removeAudio: (audioId: string) => void
   markAudioAsExtracting: (audioId: string) => void
   markAudioAsExtracted: (audioId: string) => void
   addFileName: (audioId: string, fileName: string) => void
@@ -118,6 +119,16 @@ export const audioListSlice: StateCreator<AudioListSlice, [], [], AudioListSlice
         })
       }
     return state
-  })
+  }),
+  removeAudio: (audioId: string) => set((state) => {
+    console.log('REMOVE_AUDIO', audioId)
+    const video = state.audios.find(item => item.id === audioId)
+    if(!video) return state
+    
+    const oldState = state.audios.filter(item => item.id !== audioId)
+    return ({
+      audios: [...oldState ]
+    })
+  }),
 })
 

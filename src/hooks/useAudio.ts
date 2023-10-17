@@ -1,5 +1,4 @@
 'use client'
-import { Audio } from '@/models';
 
 export function useAudio() {
   async function fetchAudio(fileName: string): Promise<string> {
