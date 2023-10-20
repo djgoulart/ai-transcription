@@ -17,29 +17,7 @@ import { Button } from '../Button'
 import { TranscriptionItem } from '../TranscriptionItem'
 
 export function TranscriptionList() {
-  const {transcriptions, audios, addTranscription} = useStore()
-  useEffect(() => console.log('transcriptions', transcriptions), [transcriptions])
-
-  async function handleStartTranscription() {
-    console.log('test')
-    if(!audios.length) return
-
-    audios.map(audio => {
-      const id = crypto.randomUUID()
-
-      addTranscription({
-        id,
-        name: audio.name,
-        title: audio.title,
-        text: '',
-        sourceUrl: audio.url,
-        isLoading: false,
-        isTranscribing: false,
-        transcribed: false
-      })
-    })
-  }
-
+  const {transcriptions} = useStore()
 
   return (
     <div className="w-full max-w-lg mt-4">

@@ -22,7 +22,7 @@ export const audioListSlice: StateCreator<AudioListSlice, [], [], AudioListSlice
     }
   )),
   markAudioAsExtracting: (audioId: string) => set((state) => {
-    console.log('MARK_AUDIO_AS_EXTRACTING', audioId)
+    
     const audio = state.audios.find(item => item.id === audioId)
       if(audio) {
         const oldState = state.audios.filter(item => item.id !== audioId)
@@ -36,7 +36,7 @@ export const audioListSlice: StateCreator<AudioListSlice, [], [], AudioListSlice
     return state
   }),
   markAudioAsExtracted: (audioId: string) => set((state) => {
-    console.log('MARK_AUDIO_AS_EXTRACTED', audioId)
+    
     const audio = state.audios.find(item => item.id === audioId)
       if(audio) {
         const oldState = state.audios.filter(item => item.id !== audioId)
@@ -51,7 +51,7 @@ export const audioListSlice: StateCreator<AudioListSlice, [], [], AudioListSlice
     return state
   }),
   addFileName: (audioId: string, fileName: string) => set((state) => {
-    console.log('ADD_AUDIO_FILE_NAME', audioId)
+    
     const audio = state.audios.find(item => item.id === audioId)
       if(audio) {
         const oldState = state.audios.filter(item => item.id !== audioId)
@@ -65,7 +65,7 @@ export const audioListSlice: StateCreator<AudioListSlice, [], [], AudioListSlice
     return state
   }),
   addFileUrl: (audioId: string, fileUrl: string) => set((state) => {
-    console.log('ADD_AUDIO_FILE_URL', audioId)
+    
     const audio = state.audios.find(item => item.id === audioId)
       if(audio) {
         const oldState = state.audios.filter(item => item.id !== audioId)
@@ -79,7 +79,7 @@ export const audioListSlice: StateCreator<AudioListSlice, [], [], AudioListSlice
     return state
   }),
   markAudioAsPlayable: (audioId: string) => set((state) => {
-    console.log('MARK_AUDIO_AS_PLAYABLE', audioId)
+    
     const audio = state.audios.find(item => item.id === audioId)
       if(audio) {
         const oldState = state.audios.filter(item => item.id !== audioId)
@@ -93,7 +93,7 @@ export const audioListSlice: StateCreator<AudioListSlice, [], [], AudioListSlice
     return state
   }),
   markAudioAsLoading: (audioId: string) => set((state) => {
-    console.log('MARK_AUDIO_AS_LOADING', audioId)
+    
     const audio = state.audios.find(item => item.id === audioId)
       if(audio) {
         const oldState = state.audios.filter(item => item.id !== audioId)
@@ -107,7 +107,7 @@ export const audioListSlice: StateCreator<AudioListSlice, [], [], AudioListSlice
     return state
   }),
   unmarkAudioAsLoading: (audioId: string) => set((state) => {
-    console.log('MARK_AUDIO_AS_LOADING', audioId)
+    
     const audio = state.audios.find(item => item.id === audioId)
       if(audio) {
         const oldState = state.audios.filter(item => item.id !== audioId)
@@ -121,7 +121,7 @@ export const audioListSlice: StateCreator<AudioListSlice, [], [], AudioListSlice
     return state
   }),
   removeAudio: (audioId: string) => set((state) => {
-    console.log('REMOVE_AUDIO', audioId)
+    
     const video = state.audios.find(item => item.id === audioId)
     if(!video) return state
     

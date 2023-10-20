@@ -19,10 +19,7 @@ import { Button } from '../Button'
 export function AudioList() {
   const {audios, addTranscription} = useStore()
 
-  useEffect(() => console.log('audios', audios), [audios])
-
   async function handleStartTranscription() {
-    console.log('test')
     if(!audios.length) return
 
     audios.map(audio => {

@@ -16,7 +16,7 @@ export const downloadListSlice: StateCreator<DownloadListSlice, [], [], Download
     }
   )),
   addVideoInfo: (videoId: string, info: Partial<Video>) => set((state) => {
-    console.log('ADD_VIDEO_INFO', videoId)
+
     const video = state.videos.find(item => item.id === videoId)
     if (video) {
       const oldState = state.videos.filter(item => item.id !== videoId)
@@ -31,7 +31,7 @@ export const downloadListSlice: StateCreator<DownloadListSlice, [], [], Download
     return state
   }),
   videoInfoRequestCompleted: (videoId: string) => set((state) => {
-    console.log('VIDEO_INFO_COMPLETED', videoId)
+
     const video = state.videos.find(item => item.id === videoId)
     if (video) {
       const oldState = state.videos.filter(item => item.id !== videoId)
@@ -45,13 +45,13 @@ export const downloadListSlice: StateCreator<DownloadListSlice, [], [], Download
     return state
   }),
   removeVideo: (videoId: string) => set((state) => {
-    console.log('REMOVE_VIDEO', videoId)
+
     const video = state.videos.find(item => item.id === videoId)
-    if(!video) return state
-    
+    if (!video) return state
+
     const oldState = state.videos.filter(item => item.id !== videoId)
     return ({
-      videos: [...oldState ]
+      videos: [...oldState]
     })
   }),
 })

@@ -16,8 +16,6 @@ export function VideoPlayer(props: VideoPlayerProps) {
     return videos.find(item => item.id === videoId)
   }, [videos])
 
-  useEffect(() => console.log('VIDEO_CHANGED', video), [video])
-
   if(video?.isRequestingInfo || !video) {
     return <Skeleton className='w-full h-[52px]' />
   }
