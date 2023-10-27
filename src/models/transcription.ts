@@ -8,4 +8,5 @@ export interface Transcription {
   transcribed: boolean
   isLoading: boolean
   isTranscribing: boolean
+  embed: boolean
 }

@@ -10,6 +10,7 @@ export interface TranscriptionListSlice {
   unmarkAsLoading: (audioId: string) => void
   markAsTranscribing: (audioId: string) => void
   markAsTranscribed: (audioId: string, text: string) => void
+  markAsEmbed: (transcriptionId: string) => void
 }
 
 export const transcriptionSlice: StateCreator<TranscriptionListSlice, [], [], TranscriptionListSlice> = (set) => ({
@@ -100,6 +101,20 @@ export const transcriptionSlice: StateCreator<TranscriptionListSlice, [], [], Tr
           text,
           transcribed: true,
           isTranscribing: false
+        }]
+      })
+    }
+    return state
+  }),
+  markAsEmbed: (transcriptionId: string) => set((state) => {
+    
+    const transcription = state.transcriptions.find(item => item.id === transcriptionId)
+    if(transcription) {
+      const oldState = state.transcriptions.filter(item => item.id !== transcriptionId)
+      return ({
+        transcriptions: [...oldState, {
+          ...transcription,
+          embed: true
         }]
       })
     }

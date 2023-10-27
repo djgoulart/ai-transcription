@@ -1,6 +1,6 @@
 'use client'
 
-import React, { useEffect }  from 'react'
+import React from 'react'
 import { ScrollArea } from '../ScrollArea'
 import { useStore } from '@/store'
 
@@ -15,9 +15,18 @@ import {
 
 import { Button } from '../Button'
 import { TranscriptionItem } from '../TranscriptionItem'
+import { useEmbedding } from '@/hooks/useEmbedding'
 
 export function TranscriptionList() {
-  const {transcriptions} = useStore()
+  const {transcriptions,  } = useStore()
+  const { createEmbedding } = useEmbedding()
+  
+  const handleEmbedTranscriptions = async () => {
+    for await (const transcription of transcriptions) {
+      await createEmbedding(transcription.text)
+
+    }
+  }
 
   return (
     <div className="w-full max-w-lg mt-4">
@@ -40,7 +49,7 @@ export function TranscriptionList() {
           </ScrollArea>
         </CardContent>
         <CardFooter className='justify-end'>
-          <Button>Start AI Ingestion</Button>
+          <Button onClick={handleEmbedTranscriptions}>Start AI Ingestion</Button>
         </CardFooter>
       </Card>
     </div>

@@ -32,7 +32,8 @@ export function AudioList() {
         text: '',
         isLoading: false,
         isTranscribing: false,
-        transcribed: false
+        transcribed: false,
+        embed: false
       })
     })
   }
