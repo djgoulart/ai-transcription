@@ -1,9 +1,10 @@
 import { NextResponse } from "next/server";
 import { TokenTextSplitter } from "langchain/text_splitter";
 import { createClient } from 'redis'
-import { RedisVectorStore } from "langchain/vectorstores/redis";
+import { MongoDBAtlasVectorSearch } from "langchain/vectorstores/mongodb_atlas";
 import { OpenAIEmbeddings } from "langchain/embeddings/openai";
 import { Document } from "langchain/document";
+import { MongoClient } from "mongodb";
 
 export async function POST(request: Request) {
   const { text } = await request.json()
@@ -30,7 +31,7 @@ export async function POST(request: Request) {
   }
 
   const redis = createClient({
-    url: 'redis://127.0.0.1:6379',
+    url: process.env.REDIS_URL,
   })
 
   await redis.connect()
